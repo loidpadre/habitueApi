@@ -8,9 +8,6 @@ const PORT = process.env.PORT || 5000;
 app.use(cors())
 app.use(express.json());
 //pegar todos os dados
-app.get("/", (req, res)=>{
-    res.send("Hello world")
-})
 app.get("/", async (req, res) =>{
     try {
         const homes = await Home.find({})
