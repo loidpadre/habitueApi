@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 const Home = require("./model/homesModel");
 const cors = require("cors")
 
-const PORT = process.env.PORT || 5000;
+require('dotenv').config();
+
 app.use(cors())
 app.use(express.json());
 
@@ -62,9 +63,9 @@ app.post("/dash/add", async (req, res) =>{
     }
 });
 
-mongoose.connect("mongodb+srv://loidpadre:IYSnNAOEMsknE4Oh@habitue.zzlbbn7.mongodb.net/?retryWrites=true&w=majority&appName=habitue").then(() =>{
-    app.listen(PORT, ()=>{
-        console.log(`servidor rodando e DB conectada na porta ${PORT}`);
+mongoose.connect(process.env.MONGODB_URI).then(() =>{
+    app.listen(process.env.PORT, ()=>{
+        console.log(`servidor rodando e DB conectada na porta ${process.env.PORT}`);
     });
 }).catch((err) =>{
     console.log("erro ao se conectar a DB");
